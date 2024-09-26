@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin Panel</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Bank Admin Panel</h1>
+	<form id="create-bank-form">
+		<h2>Create Bank</h2>
+		<input type="text" id="name" placeholder="Name" required>
+		<input type="text" id="address" placeholder="Address" required>
+		<input type="number" id="account_number" placeholder="Account Number" required>
+		<input type="number" id="balance" placeholder="Balance" required>
+		<input type="checkbox" id="is_active"> Active
+		<input type="text" id="status" placeholder="Status" required>
+		<input type="text" id="type_of_account" placeholder="Type of Account" required>
+		<button type="submit">Create</button>
+	</form>
+	<h2>Bank List</h2>
+	<table id="banks-table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Account Number</th>
+				<th>Balance</th>
+				<th>Active</th>
+				<th>Status</th>
+				<th>Type of Account</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Bank rows will be inserted here by JavaScript -->
+		</tbody>
+	</table>
+	<script src="script.js"></script>
+</body>
+</html>
