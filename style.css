@@ -67,6 +67,22 @@ button {
     cursor: pointer;
 }
 
+.active-status {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.active-status input {
+    margin-right: 5px;
+}
+
+#update-is_active {
+    justify-content: center;
+}
+
 /* Modal styles */
 .modal {
     display: none; /* Hidden by default */
@@ -88,7 +104,6 @@ button {
 .modal-content {
     text-align: center;
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 20%; /* Adjust as needed */
@@ -99,6 +114,13 @@ button {
     margin-left: auto;
     margin-right: auto;
 }
+
+.modal-content button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .close {
     color: #aaa;
