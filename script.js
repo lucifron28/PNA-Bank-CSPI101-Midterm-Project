@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const createBankForm = document.getElementById('create-bank-form');
     const banksTableBody = document.querySelector('#banks-table tbody');
+    const updateBankModal = document.getElementById('update-bank-modal');
+    const updateBankForm = document.getElementById('update-bank-form');
+    const closeModal = document.querySelector('.close');
+
+    let currentAccountNumber = null;
+    let banks = [];
 
     createBankForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -12,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             account_number: parseInt(document.getElementById('account_number').value),
             balance: parseFloat(document.getElementById('balance').value),
             is_active: document.getElementById('is_active').checked,
-            status: document.getElementById('status').value,
             type_of_account: document.getElementById('type_of_account').value
         };
         await fetch(apiUrl, {
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadBanks() {
         const response = await fetch(apiUrl);
-        const banks = await response.json();
+        banks = await response.json();
         banksTableBody.innerHTML = '';
         banks.forEach(bank => {
             const row = document.createElement('tr');
@@ -37,22 +42,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${bank.account_number}</td>
                 <td>${bank.balance}</td>
                 <td>${bank.is_active}</td>
-                <td>${bank.status}</td>
                 <td>${bank.type_of_account}</td>
                 <td>
-                    <button onclick="updateBank(${bank.account_number})">Update</button>
+                    <button onclick="openUpdateModal(${bank.account_number})">Update</button>
                     <button onclick="deleteBank(${bank.account_number})">Delete</button>
-                    <button onclick="deposit(${bank.account_number})">Deposit</button>
-                    <button onclick="withdraw(${bank.account_number})">Withdraw</button>
                 </td>
             `;
             banksTableBody.appendChild(row);
         });
     }
 
-    window.updateBank = async (accountNumber) => {
-        // Implement update functionality
+    window.openUpdateModal = (accountNumber) => {
+        currentAccountNumber = accountNumber;
+        const bank = banks.find(b => b.account_number === accountNumber);
+        document.getElementById('update-name').value = bank.name;
+        document.getElementById('update-address').value = bank.address;
+        document.getElementById('update-balance').value = bank.balance;
+        document.getElementById('update-is_active').checked = bank.is_active;
+        document.getElementById('update-type_of_account').value = bank.type_of_account;
+        updateBankModal.style.display = 'flex';
     };
+
+    updateBankForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const updatedBank = {
+            name: document.getElementById('update-name').value || undefined,
+            address: document.getElementById('update-address').value || undefined,
+            balance: parseFloat(document.getElementById('update-balance').value) || undefined,
+            is_active: document.getElementById('update-is_active').checked,
+            type_of_account: document.getElementById('update-type_of_account').value || undefined
+        };
+        await fetch(`${apiUrl}/${currentAccountNumber}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedBank)
+        });
+        updateBankModal.style.display = 'none';
+        loadBanks();
+    });
 
     window.deleteBank = async (accountNumber) => {
         await fetch(`${apiUrl}/${accountNumber}`, {
@@ -61,20 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loadBanks();
     };
 
-    window.deposit = async (accountNumber) => {
-        const amount = prompt('Enter amount to deposit:');
-        await fetch(`${apiUrl}/${accountNumber}/deposit?amount=${amount}`, {
-            method: 'PUT'
-        });
-        loadBanks();
+    closeModal.onclick = () => {
+        updateBankModal.style.display = 'none';
     };
 
-    window.withdraw = async (accountNumber) => {
-        const amount = prompt('Enter amount to withdraw:');
-        await fetch(`${apiUrl}/${accountNumber}/withdraw?amount=${amount}`, {
-            method: 'PUT'
-        });
-        loadBanks();
+    window.onclick = (event) => {
+        if (event.target === updateBankModal) {
+            updateBankModal.style.display = 'none';
+        }
     };
 
     loadBanks();
