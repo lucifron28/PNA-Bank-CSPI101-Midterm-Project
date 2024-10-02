@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body,  html {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fade-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+}
+
+@keyframes fade-out-right {
+    0% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(0); 
+    }
+}
+
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-out-left {
+    0% {
+        opacity: 1;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+
+
+
+section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+section .image {
+    position: relative;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+section .image:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #23074d;
+    background: -webkit-linear-gradient(to right, #cc5333, #23074d); 
+    background: linear-gradient(to right, #cc5333, #23074d);
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+
+section .image #background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+}
+
+section .image #logo {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+section .image #profile {
+    position: absolute;
+    z-index: 3;
+    margin-top: 25vh;
+    width: 20%;
+}
+
+.logout-btn {
+    position: relative;
+    z-index: 2;
+    margin-top: 75vh; 
+    background: black; 
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 1vw; 
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 5px;
+}
+
+.logout-btn:hover {
+    background: gray;
+    padding: 10px;
+}
+
+section .content {
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: top;
+    align-items: left;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    color: white;
+    padding: 30px;
+    background: radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%);
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+section .content aside {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    position: relative;
+    background: transparent;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+section .content aside h2 {
+    font-size: 3vw;
+    border: 5px solid whitesmoke;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 10px 10px 5px gray;
+}
+
+section .content aside #create-bank-form {
+    padding: 30px;
+    border: 5px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px gray;
+    margin-bottom: 20px;
+}
+
+section .content aside #create-bank-form h3 {
+    font-size: 2vw;
+    margin-bottom: 1vw;
+}
+
+section .content aside #create-bank-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+section .content aside #create-bank-form .active-status {
+    padding: 5px;
+    margin-left: 40%;
+}
+
+section .content aside #create-bank-form button {
+    padding: 5px;
+    font-size: 1vw;
+    border-radius: 10px;
+    color: white;
+    background: black;
+}
+
+section .content aside #create-bank-form button:hover {
+    background: gray;
+}
+
+section .content main {
+    padding: 10px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+section .content main h2 {
+    padding: 10px;
+    border: 5px solid whitesmoke;
+    margin-bottom: 25px;
+    box-shadow: 10px 10px 5px gray;
+}
+
+section .content main #banks-table {
+    padding: 5px;
+    border-radius: 15px;
+}
+
+
+section .content main #banks-table thead tr th{
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+section .content main #banks-table tbody td {
+    background: black;
+    padding: 10px;
+    width: 300px;
+}
+
+section .content main #banks-table tbody td button {
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+section .content main #banks-table tbody td button:hover {
+    background: gray;
+}
+
+.modal {
+    background: rgb(30, 30, 30);
+    color: white;
+    display: flex;
+    width: 40vw;
+    height: 100vh;
+    justify-content: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close {
+    position: absolute;
+    font-size: 50px;
+    top: 10px;
+    left: 65%;
+}
+
+.modal .modal-content #update-bank-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal .modal-content #update-bank-form h3 {
+    font-size: 3vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    padding: 10px;
+    border: 5px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px gray;
+}
+
+.modal .modal-content #update-bank-form input {
+    padding: 10px;
+    font-size: 1vw;
+    margin-bottom: 2vw;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px rgb(0, 0, 0);
+}
+
+.modal .modal-content #update-bank-form button {
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    background: black;
+}
+
+.modal .modal-content #update-bank-form button:hover {
+    background: gray;
+}
