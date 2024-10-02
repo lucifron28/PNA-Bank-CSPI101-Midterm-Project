@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading accounts:', error);
             if (errorMessage) {
                 errorMessage.textContent = 'Error loading accounts. Please try again.';
+                window.location.href = '../PNA Banking/PNAlogin.html';
             }
         }
     }
