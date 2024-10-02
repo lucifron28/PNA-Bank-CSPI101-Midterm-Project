@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNA Banking & Finance</title>
+    <link rel="stylesheet" href="user.css">
+</head>
+<body>
+    <nav>
+        <h1>PNA Bank</h1>
+    </nav>
+    <div class="container">
+        <main>
+            <h2>Account Details</h2>
+            <div id="user-info">
+                <p>Name: <span id="user-name"></span></p>
+                <p>Email: <span id="user-email"></span></p>
+                <p>Address: <span id="user-address"></span></p>
+            </div>
+            <h2>Accounts</h2>
+            <div class="accounts">
+                <!-- display all the accounts of the user -->
+            </div>
+            <button id="add-account-button">Add Account</button>
+            <div id="error-message" style="color: red;"></div>
+
+            <!-- Modal for adding a new account -->
+            <div id="account-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-account-modal">&times;</span>
+                    <h2>Add New Account</h2>
+                    <form id="account-form">
+                        <input type="number" id="account-balance" placeholder="Initial Balance" required>
+                        <select id="account-type" required>
+                            <option value="savings">Savings</option>
+                            <option value="current">Current</option>
+                        </select>
+                        <button type="submit">Add Account</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal for viewing account details -->
+            <div id="view-account-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-view-account-modal">&times;</span>
+                    <h2>Account Details</h2>
+                    <div id="account-details"></div>
+                    <h3>Withdraw/Deposit</h3>
+                    <form id="transaction-form">
+                        <input type="number" id="transaction-amount" placeholder="Amount" required>
+                        <button type="button" id="withdraw-button">Withdraw</button>
+                        <button type="button" id="deposit-button">Deposit</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="user.js" defer></script>
+</body>
+</html>
