@@ -9,22 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Fetch account details based on email
-            const response = await fetch(`${apiUrl}/banks`);
+            const response = await fetch(`${apiUrl}/banks/email/${email}`);
             if (response.ok) {
-                const users = await response.json();
-                let user;
-                if (users) {
-                    for (let i = 0; i < users.length; i++) {
-                        if (users[i].email === email) {
-                            console.log('User found:', users[i]);
-                            user = users[i];
-                            break;
-                        }
-                    }
+                const user = await response.json();
+                if (user && user.length > 0) {
+                    const name_of_user = user[0].name;
+                    const address_of_user = user[0].address;
+                    console.log(name_of_user);
+                    console.log(address_of_user);
                     localStorage.setItem('email', email);
-                    localStorage.setItem('name', user.name.value);
-                    localStorage.setItem('address', user.address.value);
-                    window.location.href = '../user/user.html'; // Redirect to the main page
+                    localStorage.setItem('name', name_of_user);
+                    localStorage.setItem('address', address_of_user);
+                    window.location.href = '../user/user.html';
                 } else {
                     throw new Error('User not found');
                 }
