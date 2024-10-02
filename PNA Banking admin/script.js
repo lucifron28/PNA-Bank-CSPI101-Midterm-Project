@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const bank = {
             name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
             address: document.getElementById('address').value,
             account_number: parseInt(document.getElementById('account_number').value),
             balance: parseFloat(document.getElementById('balance').value),
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${bank.name}</td>
+                <td>${bank.email}</td>
                 <td>${bank.address}</td>
                 <td>${bank.account_number}</td>
                 <td>${bank.balance}</td>
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAccountNumber = accountNumber;
         const bank = banks.find(b => b.account_number === accountNumber);
         document.getElementById('update-name').value = bank.name;
+        document.getElementById('update-email').value = bank.email;
         document.getElementById('update-address').value = bank.address;
         document.getElementById('update-balance').value = bank.balance;
         document.getElementById('update-is_active').checked = bank.is_active;
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.image').style.animation = 'fade-in-left 0.5s'
         const updatedBank = {
             name: document.getElementById('update-name').value || undefined,
+            email: document.getElementById('update-email').value || undefined,
             address: document.getElementById('update-address').value || undefined,
             balance: parseFloat(document.getElementById('update-balance').value) || undefined,
             is_active: document.getElementById('update-is_active').checked,

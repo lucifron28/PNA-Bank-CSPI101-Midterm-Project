@@ -234,6 +234,7 @@ section .content main #banks-table thead tr th{
     border-radius: 5px;
     font-weight: bold;
     padding: 5px;
+    min-width: 150px;
 }
 
 section .content main #banks-table tbody td {
