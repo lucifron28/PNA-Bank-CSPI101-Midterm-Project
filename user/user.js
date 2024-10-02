@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading accounts:', error);
             if (errorMessage) {
                 errorMessage.textContent = 'Error loading accounts. Please try again.';
-                window.location.href = '../PNA Banking/PNAlogin.html';
             }
         }
     }
@@ -109,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function updateBalance(accountNumber, amount) {
         try {
-            console.log(`${apiUrl}/banks/${accountNumber}`)
             const currentBalanceResponse = await fetch(`${apiUrl}/banks/${accountNumber}`);
             if (!currentBalanceResponse.ok) {
                 throw new Error('Failed to fetch current balance');
@@ -141,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
 
     accountForm.addEventListener('submit', async (e) => {
         e.preventDefault();

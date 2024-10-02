@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateBankModal = document.getElementById('update-bank-modal');
     const updateBankForm = document.getElementById('update-bank-form');
     const closeModal = document.querySelector('.close');
+    const selectEmail = document.getElementById('select_email');
 
     let currentAccountNumber = null;
     let banks = [];
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const bank = {
             name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
+            email: selectEmail.value,
             address: document.getElementById('address').value,
             account_number: parseInt(document.getElementById('account_number').value),
             balance: parseFloat(document.getElementById('balance').value),
@@ -51,6 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 </td>
             `;
             banksTableBody.appendChild(row);
+        });
+        populateEmailSelect();
+    }
+
+    async function populateEmailSelect() {
+        const response = await fetch(apiUrl);
+        const banks = await response.json();
+        const emails = [...new Set(banks.map(bank => bank.email))]; // Extract unique emails
+        selectEmail.innerHTML = '<option value="Select Email" disabled selected>Select Email</option>'; // Reset options
+        emails.forEach(email => {
+            const option = document.createElement('option');
+            option.value = email;
+            option.textContent = email;
+            selectEmail.appendChild(option);
         });
     }
 
@@ -116,5 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
         document.querySelector('.image').style.animation = 'fade-in-left 0.5s'
     };
+
     loadBanks();
 });
