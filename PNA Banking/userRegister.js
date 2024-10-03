@@ -22,61 +22,57 @@ const analytics = getAnalytics(app);
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('user-password');
 const confirmPasswordInput = document.getElementById('user-confirm-password');
-const userName = document.getElementById('name');
-const userAddress = document.getElementById('address');
+const userName = document.getElementById('name').value;
+const userAddress = document.getElementById('address').value;
 const errorMessage = document.getElementById('error-message');
 
 // Submit button
 const submitButton = document.getElementById('submit');
 
-submitButton.addEventListener('click', async (e) => {
-  e.preventDefault();
+submitButton.addEventListener('click', function (event) {
+  event.preventDefault();
   const email = emailInput.value;
   const password = passwordInput.value;
   const confirmPassword = confirmPasswordInput.value;
 
-  if (password === confirmPassword) {
-    const auth = getAuth();
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  if (password !== confirmPassword) {
+    errorMessage.textContent = 'Passwords do not match';
+    return;
+  }
+
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
       const user = userCredential.user;
-      console.log('User registered:', user);
-
-      // Add user to FastAPI backend
-      await addUser(email, userName.value, userAddress.value);
-
-      // Redirect to login page or another page
-      window.location.href = 'PNAlogin.html';
-    } catch (error) {
+      console.log('User created:', user);
+      localStorage.setItem('email', email);
+      addNewUser(email, userName, userAddress);
+      // window.location.href = 'user.html';
+    })
+    .catch((error) => {
       const errorCode = error.code;
       const errorMessageText = error.message;
-      console.error('Error:', errorCode, errorMessageText);
       errorMessage.textContent = errorMessageText;
-    }
-  } else {
-    errorMessage.textContent = 'Passwords do not match';
-  }
+    });
 });
 
-async function addUser(email, name, address) {
-  try {
-    const response = await fetch('https://cada-bank-api.vercel.app/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        address: address,
-        name: name
-      })
-    });
 
-    if (!response.ok) {
-      throw new Error('Failed to create user account in backend');
-    }
-  } catch (error) {
-    console.error('Error adding user to backend:', error);
-    throw error;
+async function addNewUser(email, name, address) {
+  const apiUrl = 'http://cada-bank-api.vercel.app';
+  const response = await fetch(`${apiUrl}/user`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      name,
+      address,
+    }),
+  });
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error('Failed to add user');
   }
 }

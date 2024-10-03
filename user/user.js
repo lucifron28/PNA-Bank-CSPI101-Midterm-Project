@@ -18,16 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = localStorage.getItem('email');
     const name = localStorage.getItem('name') || 'N/A';
     const address = localStorage.getItem('address') || 'N/A';
+
+    async function getUser() {
+        try {
+            const response = await fetch(`${apiUrl}/users/email/${userEmailElement.value}`);
+            const data = await response.json();
+            console.log(data.email.value)
+            if (!(data && data.email)) {
+                throw new Error('User not found');
+            }
+            userAddressElement.textContent = data.address.value;
+            userNameElement.textContent = data.name.value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');;
+        } catch (error) {
+            // window.location.href = '../PNA Banking/PNAlogin.html';
+            console.error('Error getting user:', error)
+        }
+    }
     userEmailElement.textContent = email;
-    userAddressElement.textContent = address;
-    userNameElement.textContent = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+    getUser();
+    // userAddressElement.textContent = address;
+    // userNameElement.textContent = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 
     async function loadAccounts() {
         try {
-            const response = await fetch(`${apiUrl}/banks/email/${email}`);
+            const response = await fetch(`${apiUrl}/users/email/${email}`);
             if (response.ok) {
-                const accounts = await response.json();
-                displayAccounts(accounts);
+                const account = await fetch(`${apiUrl}/banks/email/${email}`);
+                if (account.ok) {
+                    const accounts = await account.json();
+                    displayAccounts(accounts);
+                } else {
+                    errorMessage.textContent = 'No accounts found';
+                }
             } else {
                 throw new Error('Failed to load accounts');
             }

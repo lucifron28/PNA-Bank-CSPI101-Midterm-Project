@@ -39,18 +39,17 @@ submitButton.addEventListener('click', async (e) => {
 
     // Fetch account details based on email
     const apiUrl = 'http://cada-bank-api.vercel.app';
-    const response = await fetch(`${apiUrl}/banks/email/${email}`);
+    const response = await fetch(`${apiUrl}/users/email/${email}`);
     if (response.ok) {
       const userDetails = await response.json();
-      if (userDetails && userDetails.length > 0) {
-        const name_of_user = userDetails[0].name;
-        const address_of_user = userDetails[0].address;
-        console.log(name_of_user);
-        console.log(address_of_user);
+      console.log(userDetails.length)
+      if (userDetails && userDetails.email) {
+        const name_of_user = userDetails.name;
+        const address_of_user = userDetails.address;
         localStorage.setItem('email', email);
         localStorage.setItem('name', name_of_user);
         localStorage.setItem('address', address_of_user);
-        // window.location.href = '../user/user.html';
+        window.location.href = '../user/user.html';
       } else {
         throw new Error('User not found');
       }
