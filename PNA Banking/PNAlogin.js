@@ -38,11 +38,15 @@ submitButton.addEventListener('click', async (e) => {
     console.log('User signed in:', user);
 
     // Fetch account details based on email
-    const apiUrl = 'http://cada-bank-api.vercel.app';
-    const response = await fetch(`${apiUrl}/users/email/${email}`);
+    const apiUrl = 'https://cada-bank-api.vercel.app';
+    const encodedEmail = email;
+    const response = await fetch(`${apiUrl}/users/email/${encodedEmail}`);
+    console.log('Response status:', response.status); // Log response status
+    const responseData = await response.json();
+    console.log('Response data:', responseData); // Log response data
+
     if (response.ok) {
-      const userDetails = await response.json();
-      console.log(userDetails.length)
+      const userDetails = responseData;
       if (userDetails && userDetails.email) {
         const name_of_user = userDetails.name;
         const address_of_user = userDetails.address;
@@ -54,7 +58,7 @@ submitButton.addEventListener('click', async (e) => {
         throw new Error('User not found');
       }
     } else {
-      throw new Error('Failed to fetch account details');
+      throw new Error(responseData.message || 'Failed to fetch account details');
     }
   } catch (error) {
     const errorCode = error.code;

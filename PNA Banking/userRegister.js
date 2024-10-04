@@ -22,18 +22,18 @@ const analytics = getAnalytics(app);
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('user-password');
 const confirmPasswordInput = document.getElementById('user-confirm-password');
-const userName = document.getElementById('name').value;
-const userAddress = document.getElementById('address').value;
 const errorMessage = document.getElementById('error-message');
 
 // Submit button
 const submitButton = document.getElementById('submit');
 
-submitButton.addEventListener('click', function (event) {
-  event.preventDefault();
+submitButton.addEventListener('click', async (e) => {
+  e.preventDefault();
   const email = emailInput.value;
   const password = passwordInput.value;
   const confirmPassword = confirmPasswordInput.value;
+  const userName = document.getElementById('name').value;
+  const userAddress = document.getElementById('address').value;
 
   if (password !== confirmPassword) {
     errorMessage.textContent = 'Passwords do not match';
@@ -41,24 +41,22 @@ submitButton.addEventListener('click', function (event) {
   }
 
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log('User created:', user);
-      localStorage.setItem('email', email);
-      addNewUser(email, userName, userAddress);
-      // window.location.href = 'user.html';
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessageText = error.message;
-      errorMessage.textContent = errorMessageText;
-    });
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log('User created:', user);
+    localStorage.setItem('email', email);
+    await addNewUser(email, userName, userAddress);
+    window.location.href = 'PNAlogin.html';
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessageText = error.message;
+    errorMessage.textContent = errorMessageText;
+  }
 });
 
-
 async function addNewUser(email, name, address) {
-  const apiUrl = 'http://cada-bank-api.vercel.app';
+  const apiUrl = 'https://cada-bank-api.vercel.app';
   const response = await fetch(`${apiUrl}/user`, {
     method: 'POST',
     headers: {
@@ -70,9 +68,9 @@ async function addNewUser(email, name, address) {
       address,
     }),
   });
-  if (response.ok) {
-    return await response.json();
-  } else {
-    throw new Error('Failed to add user');
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to add user');
   }
+  return await response.json();
 }
