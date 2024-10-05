@@ -1,22 +1,273 @@
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body,  html {
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+}
+
+section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+section .image {
+    position: relative;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+section .image:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2980b9;
+    background: -webkit-linear-gradient(to right, #2c3e50, #2980b9);
+    background: linear-gradient(to right, #2c3e50, #2980b9);
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+
+section .image #background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+}
+
+section .image #logo {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+section .image #profile {
+    position: absolute;
+    z-index: 3;
+    margin-top: 25vh;
+    width: 20%;
+}
+
+.logout-btn {
+    position: relative;
+    z-index: 2;
+    margin-top: 75vh; 
+    background: rgb(255, 255, 255); 
+    border-radius: 20px;
+    color: rgb(0, 65, 108);
+    font-size: 1vw; 
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 5px;
+}
+
+.logout-btn:hover {
+    background: rgb(37, 230, 255);
+    padding: 10px;
+}
+
+section .container {
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: rgb(0, 0, 0);
+    padding: 30px;
+    background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+
+.container #user-info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 2vw;
+}
+
+.container #user-info .title h2 {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-bottom: 1vw;
+    padding: 5px;
+    font-size: 3vw;
+    border: 5px solid rgb(78, 157, 255);
+    border-radius: 15px;
+    background: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
+    color: white;
+}
+
+.container #user-info .info {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #2980b9;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    color:rgb(0, 65, 108);
+    padding: 5px;
+    width: 60%;
+    margin-left: 10vw;
+}
+
+.container #user-info .info p {
+    padding: 5px;
+    margin-bottom: 1vw;
+    font-weight: bold;
+    font-size: 1.25vw;
+}
+
+.container .account-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .account-info .title h2{
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-bottom: 1vw;
+    padding: 5px;
+    font-size: 2vw;
+    border: 5px solid rgb(78, 157, 255);
+    border-radius: 15px;
+    background: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
+    color: white;
+}
+
+.container .account-info .accounts {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #2980b9;
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 1vw;
+}
+
+.container .account-info #add-account-button {
+    padding: 5px;
+    background: #2980b9;
+    color: white;
+    border-radius: 10px;
+}
+
+.container .account-info #add-account-button:hover {
+    background: #29b9ad;
+}
+
+.container #account-modal {
+    display: none;
+}
+
+.container #view-account-modal {
+    display: none;
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #006a82;
     width: 80%;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    justify-content: center;
+    display: flex;
+    color: #2c3e50;
+    border: 2px solid #006a82;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+.modal-content h3 {
+    justify-content: center;
+    display: flex;
+    color: #2c3e50;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+.modal-content #account-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content #account-form #account-balance {
+    padding: 5px;
+    border: 2px solid #006a82;
+    border-radius: 3px;
+}
+
+.modal-content #account-form #account-type {
+    margin-bottom: 1vw;
+    padding: 2px;
+    border: 2px solid #00323d;
+    border-radius: 3px;
+}
+
+.modal-content #account-form button {
+    padding: 2px;
+    background: #2980b9;
+    color: white;
+    border-radius: 10px;
+}
+
+.modal-content #account-form button:hover {
+    background: #29b9ad;
+}
+
+.modal-content #transaction-form #transaction-amount{
+    padding: 5px;
+    border: 2px solid #006a82;
+    border-radius: 3px;
+    margin-bottom: 1vw;
+}
+
+.modal-content #transaction-form button {
+    padding: 5px;
+    background: #2980b9;
+    color: white;
+    border-radius: 10px;
+}
+
+.modal-content #transaction-form button:hover {
+    background: #29b9ad;
 }
 
 .close {
@@ -28,7 +279,7 @@
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: rgb(5, 9, 61);
     text-decoration: none;
     cursor: pointer;
 }
