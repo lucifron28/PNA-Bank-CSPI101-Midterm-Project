@@ -10,6 +10,40 @@ body,  html {
     height: 100%;
 }
 
+@keyframes fade-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
 section {
     position: relative;
     width: 100vw;
@@ -28,6 +62,7 @@ section .image {
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+    animation: fade-in-left 1s;
 }
 
 section .image:before {
@@ -101,6 +136,7 @@ section .container {
     background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
     overflow-y: auto;
     overflow-x: auto;
+    animation: fade-in-right 1s;
 }
 
 
@@ -187,10 +223,12 @@ section .container {
 
 .container #account-modal {
     display: none;
+    animation: fade-down 1s;
 }
 
 .container #view-account-modal {
     display: none;
+    animation: fade-down 1s;
 }
 
 .modal-content {
