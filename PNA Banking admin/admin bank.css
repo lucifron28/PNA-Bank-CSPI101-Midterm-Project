@@ -198,6 +198,12 @@ section .content aside #create-bank-form .active-status {
     margin-left: 40%;
 }
 
+section .content aside #create-bank-form #select_email {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 section .content aside #create-bank-form button {
     padding: 5px;
     font-size: 1vw;
