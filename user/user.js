@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "http://cada-bank-api.vercel.app";
+  const apiUrl = "https://cada-bank-api.vercel.app";
   const accountsContainer = document.querySelector(".accounts");
   const accountModal = document.getElementById("account-modal");
   const closeAccountModal = document.getElementById("close-account-modal");
@@ -131,6 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     viewAccountModal.style.display = "block";
 
+    
+    accountDetails.scrollIntoView({
+      behavior: "smooth",
+      block: "start" 
+    });
+
     withdrawButton.onclick = async () => {
       const amount = parseFloat(document.getElementById("transaction-amount").value);
       await updateBalance(account.account_number, -amount);
@@ -215,6 +221,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addAccountButton.addEventListener("click", () => {
     accountModal.style.display = "block";
+    accountModal.scrollIntoView({
+      behavior: "smooth", 
+      block: "start"
+    });
   });
 
   closeAccountModal.addEventListener("click", () => {
