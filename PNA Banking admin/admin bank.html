@@ -11,7 +11,7 @@
         <img id="logo" src="images/PNA.png">
         <img id=background src="images/bg2.jpg">
         <img id="profile" src="images/profile.png">
-        <button class="logout-btn">Logout</button>
+        <button class="logout-btn" id="log-out">Logout</button>
     </div>
     <div class="content">
         <aside>
@@ -71,4 +71,11 @@
 
     <script src="script.js"></script>
 </section>
+
+<script>
+    const logoutButton = document.getElementById('log-out');
+    logoutButton.addEventListener('click', () => {
+        window.location.href = '../PNA Banking/adminlogin.html';
+    });
+</script>
 </html>
