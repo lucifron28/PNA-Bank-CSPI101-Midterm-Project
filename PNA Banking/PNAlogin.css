@@ -1,3 +1,13 @@
+:root {
+    --primary-color: #77d6ff;
+    --secondary-color: #607d8b;
+    --background-color: #4bbbea;
+    --hover-color: #50acd3;
+    --gradient-start: #2c3e50;
+    --gradient-end: #2980b9;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -48,10 +58,7 @@ section .imgbox:before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #2980b9;
-    background: -webkit-linear-gradient(to right, #2c3e50, #2980b9);
-    background: linear-gradient(to right, #2c3e50, #2980b9);
-
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
     z-index: 1;
     mix-blend-mode: screen;
 }
@@ -80,95 +87,77 @@ section .contentbox img {
     margin-bottom: -20px; 
 }
 
-section .contentbox .formbox {
+section .formbox {
     width: 50%;
 }
 
-section .contentbox .formbox h2{
-    color: #607d8b;
+section .formbox h2 {
+    color: var(--secondary-color);
     font-weight: 600;
     font-size: 1.5em;
     text-transform: uppercase;
     margin-bottom: 20px;
-    border-bottom: 4px solid #77d6ff;
+    border-bottom: 4px solid var(--primary-color);
     display: inline-block;
     letter-spacing: 1px;
 }
 
-section .contentbox .formbox .inputbox {
+section .inputbox {
     margin-bottom: 20px;
 }
 
-section .contentbox .formbox .inputbox span {
+section .inputbox span,
+section .remember,
+section .inputbox p {
+    color: var(--secondary-color);
     font-size: 16px;
-    margin-bottom: 5px;
-    display: inline-block;
-    color: #607d8b;
     font-weight: 300;
     letter-spacing: 1px;
 }
 
-section .contentbox .formbox .inputbox input {
+section .inputbox input {
     width: 100%;
     padding: 10px 20px;
     outline: none;
     font-weight: 400;
-    border: 1px solid #607d8b;
+    border: 1px solid var(--secondary-color);
     font-size: 16px;
-    letter-spacing: 1px;
-    color: #607d8b;
+    color: var(--secondary-color);
     background: transparent;
     border-radius: 30px;
 }
 
-section .contentbox .formbox .inputbox input[type="submit"] {
-    background: #4bbbea;
+section .inputbox input[type="submit"] {
+    background: var(--background-color);
     color: #fff;
-    outline: none;
     border: none;
     font-weight: 500;
     cursor: pointer;
 }
 
-section .contentbox .formbox .inputbox input[type="submit"]:hover {
-    background: #50acd3;
+section .inputbox input[type="submit"]:hover {
+    background: var(--hover-color);
 }
 
-section .contentbox .formbox .remember {
-    margin-bottom: 10px;
-    color: #607d8b;
-    font-weight: 400;
-    font-size: 14px;
-}
-
-section .contentbox .formbox .inputbox p {
-    color: #607d8b;
-}
-
-section .contentbox .formbox .inputbox p a {
-    color: #4bbbea;
+section .inputbox p a {
+    color: var(--background-color);
 }
 
 @media (max-width: 768px) {
     section .imgbox {
-        top: 0;
-        left: 0;
         position: absolute;
         width: 100%;
         height: 100%;
     }
     section .contentbox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 100%;
         height: 100%;
         z-index: 1;
     }
-    section .contentbox .formbox {
+    section .formbox {
         width: 100%;
         padding: 40px;
-        background: rgba(255 255 255 / 0.9);
+        background: rgba(255, 255, 255, 0.9);
         margin: 50px;
     }
 }
