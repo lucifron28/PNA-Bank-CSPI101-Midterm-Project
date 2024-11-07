@@ -1,138 +1,23 @@
-:root {
-    --primary-color: #77d6ff;
-    --secondary-color: #607d8b;
-    --background-color: #4bbbea;
-    --hover-color: #50acd3;
-    --gradient-start: #2c3e50;
-    --gradient-end: #2980b9;
-}
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-@keyframes fade-in-right {
-    0% {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0); 
-    }
-}
-
-@keyframes fade-in-left {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-}
-
-section .imgbox {
-    position: relative;
-    width: 50%;
-    height: 100%; 
-    animation: fade-in-left 1s;
-}
-
-section .imgbox:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-    z-index: 1;
-    mix-blend-mode: screen;
-}
-
-section .imgbox img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-section .contentbox {
-    display: flex;
-    width: 50%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    animation: fade-in-right 1.5s;
-}
-
-section .contentbox img {
-    width: 300px;  
-    margin-bottom: -20px; 
-}
-
-section .formbox {
-    width: 50%;
-}
+@import url('shared.css');
 
 section .formbox h2 {
     color: var(--secondary-color);
-    font-weight: 600;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
     border-bottom: 4px solid var(--primary-color);
-    display: inline-block;
-    letter-spacing: 1px;
-}
-
-section .inputbox {
-    margin-bottom: 20px;
 }
 
 section .inputbox span,
 section .remember,
 section .inputbox p {
     color: var(--secondary-color);
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 1px;
 }
 
 section .inputbox input {
-    width: 100%;
-    padding: 10px 20px;
-    outline: none;
-    font-weight: 400;
     border: 1px solid var(--secondary-color);
-    font-size: 16px;
     color: var(--secondary-color);
-    background: transparent;
-    border-radius: 30px;
 }
 
 section .inputbox input[type="submit"] {
     background: var(--background-color);
-    color: #fff;
-    border: none;
-    font-weight: 500;
-    cursor: pointer;
 }
 
 section .inputbox input[type="submit"]:hover {
@@ -144,20 +29,7 @@ section .inputbox p a {
 }
 
 @media (max-width: 768px) {
-    section .imgbox {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-    section .contentbox {
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-    section .formbox {
-        width: 100%;
-        padding: 40px;
+    section .contentbox .formbox {
         background: rgba(255, 255, 255, 0.9);
-        margin: 50px;
     }
 }
