@@ -303,7 +303,7 @@ section .content main #banks-table tbody td button:hover {
     font-size: 1vw;
     margin-bottom: 2vw;
     border-radius: 10px;
-    box-shadow: 10px 10px 5px rgb(0, 0, 0);
+    box-shadow: 10px 10px 5px black;
 }
 
 .modal .modal-content #update-bank-form button {
