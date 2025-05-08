@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PNA Login</title>
-    <link rel="stylesheet" href="shared.css">
-    <link rel="stylesheet" href="PNALOGIN.css">
+    <link rel="stylesheet" href="src/auth/shared.css">
+    <link rel="stylesheet" href="index.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <section>
         <div class="imgbox">
-            <img src="images/bg.jpg">
+            <img src="src/assets/backgrounds/bg.jpg">
         </div>
         <div class="contentbox">
-            <img src="images/PNA.png" alt="PNA Logo">
+            <img src="src/assets/logos/PNA.png" alt="PNA Logo">
             <div class="formbox">
                 <h2>Login</h2>
                 <form id="login-form">
@@ -31,13 +31,13 @@
                         <input type="submit" value="Sign in" id="submit">
                     </div>
                     <div class="inputbox">
-                        <p>Don't have an account? <a href="userRegister.html">Sign-up</a></p>
+                        <p>Don't have an account? <a href="src/auth/register.html">Sign-up</a></p>
                     </div>
                 </form>
                 <div id="error-message" style="color: red;"></div>
             </div>
         </div>
     </section>
-    <script type="module" src="PNAlogin.js" defer></script>
+    <script type="module" src="index.js" defer></script>
 </body>
 </html>

@@ -53,7 +53,7 @@ submitButton.addEventListener('click', async (e) => {
         localStorage.setItem('email', email);
         localStorage.setItem('name', name_of_user);
         localStorage.setItem('address', address_of_user);
-        window.location.href = '../user/user.html';
+        window.location.href = 'src/user/dashboard.html';
       } else {
         throw new Error('User not found');
       }

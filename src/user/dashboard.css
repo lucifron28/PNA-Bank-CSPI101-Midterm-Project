@@ -1,0 +1,616 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body,  html {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fade-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+
+section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+section .image {
+    position: relative;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fade-in-left 1s;
+}
+
+section .image:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2980b9;
+    background: -webkit-linear-gradient(to right, #2c3e50, #2980b9);
+    background: linear-gradient(to right, #2c3e50, #2980b9);
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+
+section .image #background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+}
+
+section .image #logo {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+section .image #profile {
+    position: absolute;
+    z-index: 3;
+    margin-top: 25vh;
+    width: 20%;
+}
+
+.logout-btn {
+    position: relative;
+    z-index: 2;
+    margin-top: 75vh; 
+    background: rgb(255, 255, 255); 
+    border-radius: 20px;
+    color: rgb(0, 65, 108);
+    font-size: 1vw; 
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 5px;
+}
+
+.logout-btn:hover {
+    background: rgb(37, 230, 255);
+    padding: 10px;
+}
+
+section .container {
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    color: rgb(0, 0, 0);
+    padding: 30px;
+    background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
+    overflow-y: auto;
+    overflow-x: auto;
+    animation: fade-in-right 1s;
+}
+
+
+.container #user-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 90%;
+    margin-bottom: 2vw;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(4px);
+    align-items: center;
+}
+
+.container #user-info .title h2 {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-bottom: 1.5vw;
+    padding: 15px;
+    font-size: 2.5vw;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.container #user-info .info {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    color: #2c3e50;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.container #user-info .info p {
+    padding: 12px;
+    margin-bottom: 1vw;
+    font-weight: 500;
+    font-size: 1.1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.container #user-info .info p span:last-child {
+    color: #2980b9;
+    font-weight: 600;
+}
+
+.container #user-info .info p:last-child {
+    border-bottom: none;
+}
+
+.container .account-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.container .account-info .title h2 {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-bottom: 1.5vw;
+    padding: 15px;
+    font-size: 2.5vw;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.container .account-info .accounts {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    border: none;
+    width: 100%;
+    max-width: 1200px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 15px;
+    margin-bottom: 1.5vw;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(4px);
+}
+
+.account {
+    padding: 25px;
+    border: none;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.account:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+}
+
+.account p {
+    padding: 10px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 1.1vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.account p:last-of-type {
+    border-bottom: none;
+    color: #2980b9;
+    font-weight: 600;
+    font-size: 1.2vw;
+}
+
+.account .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.account button {
+    padding: 10px 20px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9vw;
+    min-width: 120px;
+}
+
+.account button:hover {
+    background: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.account button.delete-account-button {
+    background: #e74c3c;
+}
+
+.account button.delete-account-button:hover {
+    background: #c0392b;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+.container .account-info #add-account-button {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1vw;
+    margin-top: 20px;
+}
+
+.container .account-info #add-account-button:hover {
+    background: linear-gradient(135deg, #3498db, #34495e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+#error-message {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.container #account-modal {
+    display: none;
+    animation: fade-down 1s;
+}
+
+.container #view-account-modal {
+    display: none;
+    animation: fade-down 1s;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.account-details-content {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.account-details-content h3 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row .label {
+    font-weight: bold;
+    color: #666;
+}
+
+.detail-row .value {
+    color: #333;
+}
+
+.transaction-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.transaction-section h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.2em;
+}
+
+#transaction-amount {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#withdraw-button {
+    background-color: #2980b9;
+    color: white;
+}
+
+#withdraw-button:hover {
+    background-color: #3498db;
+}
+
+#deposit-button {
+    background-color: #28a745;
+    color: white;
+}
+
+#deposit-button:hover {
+    background-color: #218838;
+}
+
+.container #account-modal .modal-content {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+.container #account-modal h2 {
+    color: #2c3e50;
+    font-size: 2vw;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.container #account-modal #account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.container #account-modal #account-form input,
+.container #account-modal #account-form select {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1vw;
+    color: #2c3e50;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.container #account-modal #account-form input:focus,
+.container #account-modal #account-form select:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 0 2px rgba(41, 128, 185, 0.1);
+    outline: none;
+}
+
+.container #account-modal #account-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232980b9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+    padding-right: 40px;
+    color: #2c3e50;
+}
+
+.container #account-modal #account-form select option {
+    padding: 10px;
+    background: white;
+    color: #2c3e50;
+}
+
+.container #account-modal #account-form select option:first-child {
+    color: #95a5a6;
+}
+
+.container #account-modal #account-form select:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 0 2px rgba(41, 128, 185, 0.1);
+    outline: none;
+}
+
+.container #account-modal #account-form select:hover {
+    border-color: #2980b9;
+}
+
+.container #account-modal #account-form button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1vw;
+    margin-top: 10px;
+}
+
+.container #account-modal #account-form button:hover {
+    background: linear-gradient(135deg, #3498db, #34495e);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.container #account-modal .close {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.container #account-modal .close:hover {
+    color: #2980b9;
+    transform: rotate(90deg);
+}

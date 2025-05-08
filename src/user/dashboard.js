@@ -124,27 +124,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function viewAccount(account) {
-    accountDetails.innerHTML = `
-      <p>Account Number: ${account.account_number}</p>
-      <p>Account Type: ${account.type_of_account}</p>
-      <p>Balance: ${account.balance}</p>
-    `;
+    document.getElementById("account-number").textContent = account.account_number;
+    document.getElementById("account-type").textContent = account.type_of_account;
+    document.getElementById("account-balance").textContent = `₱${account.balance.toFixed(2)}`;
     viewAccountModal.style.display = "block";
 
-    
-    accountDetails.scrollIntoView({
-      behavior: "smooth",
-      block: "start" 
-    });
+    // Clear previous transaction amount
+    document.getElementById("transaction-amount").value = "";
 
-    withdrawButton.onclick = async () => {
+    // Add event listeners to the buttons
+    const withdrawBtn = document.getElementById("withdraw-button");
+    const depositBtn = document.getElementById("deposit-button");
+
+    withdrawBtn.onclick = async () => {
       const amount = parseFloat(document.getElementById("transaction-amount").value);
-      await updateBalance(account.account_number, -amount);
+      if (amount && amount > 0) {
+        await updateBalance(account.account_number, -amount);
+      } else {
+        errorMessage.textContent = "Please enter a valid amount";
+      }
     };
 
-    depositButton.onclick = async () => {
+    depositBtn.onclick = async () => {
       const amount = parseFloat(document.getElementById("transaction-amount").value);
-      await updateBalance(account.account_number, amount);
+      if (amount && amount > 0) {
+        await updateBalance(account.account_number, amount);
+      } else {
+        errorMessage.textContent = "Please enter a valid amount";
+      }
     };
   }
 
