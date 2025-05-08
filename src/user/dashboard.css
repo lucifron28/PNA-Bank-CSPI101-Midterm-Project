@@ -262,7 +262,7 @@ section .container {
 
 .account {
     padding: 25px;
-    border: none;
+    border: 2px solid rgba(41, 128, 185, 0.2);
     background: linear-gradient(135deg, #ffffff, #f8f9fa);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -278,6 +278,7 @@ section .container {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-color: #2980b9;
 }
 
 .account p {
@@ -426,6 +427,13 @@ section .container {
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 8px;
+    border: 2px solid rgba(41, 128, 185, 0.2);
+    transition: all 0.3s ease;
+}
+
+.account-details-content:hover {
+    border-color: #2980b9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .account-details-content h3 {
@@ -438,7 +446,7 @@ section .container {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(41, 128, 185, 0.1);
 }
 
 .detail-row:last-child {
@@ -447,11 +455,12 @@ section .container {
 
 .detail-row .label {
     font-weight: bold;
-    color: #666;
+    color: #2c3e50;
 }
 
 .detail-row .value {
-    color: #333;
+    color: #2980b9;
+    font-weight: 500;
 }
 
 .transaction-section {
